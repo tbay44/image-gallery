@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
 const {Schema} = require('mongoose');
-const {Model} = require('mongoose');
+const products = require('./data.js');
 
 const productSchema = new Schema({
-  image0: String,
+  'prime_pic': String,
   image1: String,
   image2: String,
 });
-
-const product = Model('Product', productSchema);
-
-mongoose.connect('mongodb://localhost:27017/tbay');
+const Product = mongoose.model('Product', productSchema);
+const connectionString = 'mongodb+srv://tbay:tbay@tbay-pdiop.gcp.mongodb.net/tbay?retryWrites=true&w=majority';
+mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+Product.insertMany(products);
