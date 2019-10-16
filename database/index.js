@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const {Schema} = require('mongoose');
-const products = require('./data.js');
 
 
 // Retain schema and model for queries to proper collection in db
