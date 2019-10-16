@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const fs = require('fs');
-// const {Schema} = require('mongoose');
-// const products = require('./data.js');
+const {Schema} = require('mongoose');
+const products = require('./data.js');
 
+
+// Retain schema and model for queries to proper collection in db
 const productSchema = new Schema({
   'prime_pic': String,
   'pic_1': String,
