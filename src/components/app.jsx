@@ -5,6 +5,8 @@ class App extends React.Component {
     super(props);
   }
   render() {
-    return <h1></h1>;
+    return <h1>Test Test Test</h1>;
   }
 }
+
+export default App;
