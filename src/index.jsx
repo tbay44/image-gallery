@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import App from './components/app.jsx';
+import ImageGallery from './components/ImageGallery.jsx';
 
-ReactDOM.render(<App/>, document.getElementById('image-gallery'));
+ReactDOM.render(<ImageGallery/>, document.getElementById('image-gallery'));
