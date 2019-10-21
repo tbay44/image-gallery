@@ -13,12 +13,19 @@ class ImageGallery extends React.Component {
     };
   }
 
-  getImages() {
-    axios.get(`/product/${window.id}`)
+  componentDidMount() {
+    window.addEventListener('uniqueId', () => {
+      this.getImages(window.uniqueId);
+    });
+    this.getImages(2);
+  }
+
+  getImages(productId) {
+    axios.get(`/product/${productId}`)
       .then((result) => {
         this.setState({
-          current: result.data.prime_pic,
-          photos: [result.data.prime_pic, result.data.pic_1, result.data.pic_2]
+          current: result.data[0].prime_pic,
+          photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2]
         });
       }).catch((err) => {
         console.log('handle error');
@@ -29,7 +36,6 @@ class ImageGallery extends React.Component {
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <h1>Image Gallery</h1>
         <CurrentImage src={this.state.current}/>
         <ProductImages photos={this.state.photos}/>
         <HaveOneToSell/>

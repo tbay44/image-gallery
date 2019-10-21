@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --watch",
     "deploy": "pm2 deploy ecosystem.config.js production"
   },
   "dependencies": {
