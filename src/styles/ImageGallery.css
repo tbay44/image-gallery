@@ -57,6 +57,10 @@ body {
   background: #fafafa;
 }
 
+/* .extra-image-container-clicked {
+  border: 3px solid #777;
+} */
+
 .extra-image {
   height: 64px;
   width: 64px;
