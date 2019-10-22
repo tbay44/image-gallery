@@ -10,6 +10,7 @@ class ImageGallery extends React.Component {
     this.state = {
       temporary: '',
       permanent: '',
+      selected: null,
       photos: [],
     };
     this.changeView = this.changeView.bind(this);
@@ -34,10 +35,12 @@ class ImageGallery extends React.Component {
       });
   }
 
-  changeView(src, permanent) {
-    if (permanent) {
+  changeView(src, selectedNo) {
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(selectedNo)) {
       this.setState({
         permanent: src,
+        selected: selectedNo,
       });
     } else {
       this.setState({
@@ -50,7 +53,11 @@ class ImageGallery extends React.Component {
     return ( // 582 by 575
       <React.Fragment>
         <CurrentImage src={this.state.permanent} tempSrc={this.state.temporary}/>
-        <ProductImages photos={this.state.photos} changeView={this.changeView}/>
+        <ProductImages
+          photos={this.state.photos}
+          changeView={this.changeView}
+          selected={this.state.selected}
+        />
         <HaveOneToSell/>
       </React.Fragment>
     );
