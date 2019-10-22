@@ -8,30 +8,49 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: '',
+      temporary: '',
+      permanent: '',
       photos: [],
     };
+    this.changeView = this.changeView.bind(this);
   }
 
-  getImages() {
-    axios.get(`/product/${window.id}`)
+  componentDidMount() {
+    window.addEventListener('uniqueId', () => {
+      this.getImages(window.uniqueId);
+    });
+    this.getImages(2);
+  }
+
+  getImages(productId) {
+    axios.get(`/product/${productId}`)
       .then((result) => {
         this.setState({
-          current: result.data.prime_pic,
-          photos: [result.data.prime_pic, result.data.pic_1, result.data.pic_2]
+          permanent: result.data[0].prime_pic,
+          photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2],
         });
       }).catch((err) => {
         console.log('handle error');
       });
   }
 
+  changeView(src, permanent) {
+    if (permanent) {
+      this.setState({
+        permanent: src,
+      });
+    } else {
+      this.setState({
+        temporary: src,
+      });
+    }
+  }
 
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <h1>Image Gallery</h1>
-        <CurrentImage src={this.state.current}/>
-        <ProductImages photos={this.state.photos}/>
+        <CurrentImage src={this.state.permanent} tempSrc={this.state.temporary}/>
+        <ProductImages photos={this.state.photos} changeView={this.changeView}/>
         <HaveOneToSell/>
       </React.Fragment>
     );

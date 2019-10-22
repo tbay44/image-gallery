@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'image-gallery',
-    script: './server/index.js'
+    script: './server/index.js',
   }],
   deploy: {
     production: {
@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:tbay44/image-gallery',
       path: '/home/ubuntu/image-gallery',
-      'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.config.js'
-    }
-  }
+      'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.config.js',
+    },
+  },
 };

@@ -1,0 +1,99 @@
+body {
+  font-family: "Helvetica neue", Helvetica, Verdana, Sans-serif;
+}
+#image-gallery {
+  height: 675px;
+  width: 518px;
+}
+
+/* #left-shadow {
+  height: 485px;
+  width: 400px;
+  position: absolute;
+  box-shadow: 0 15px 6px rgba(0,0,0,0.3);
+  transform: rotate(-4deg);
+  z-index: -2;
+  margin-left: 0;
+} */
+
+#current-image-container {
+  height: 502px;
+  width: 502px;
+}
+
+#current-image-container img {
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 3px;
+}
+
+#extra-images-container {
+  margin-top: 20px;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+}
+
+#main-view {
+  height: 100%;
+  width: 100%;
+}
+
+.extra-image-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0;
+  height: 72px;
+  width: 72px;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  background-color: #FFF;
+}
+
+.extra-image-container:hover {
+  cursor: pointer;
+  border: 1px solid  #777;
+  background: #fafafa;
+}
+
+.extra-image {
+  height: 64px;
+  width: 64px;
+  margin: auto;
+}
+
+#have-one-to-sell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 1px dotted #CCC;
+  padding: 15px 0;
+  font-size: 13px;
+}
+
+#have-one-to-sell a {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0654ba;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  padding: 0.5em 1.2em;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.04);
+}
+
+#have-one-to-sell a:hover {
+  border: 1px solid #aaa;
+  background: #fafafa;
+  box-shadow: none;
+}
+
+#have-one-to-sell a:active {
+  top: 2px;
+}
+
+#have-one-to-sell img {
+  height: 16px;
+}
