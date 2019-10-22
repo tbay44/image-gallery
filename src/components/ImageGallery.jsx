@@ -27,7 +27,7 @@ class ImageGallery extends React.Component {
       .then((result) => {
         this.setState({
           permanent: result.data[0].prime_pic,
-          photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2]
+          photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2],
         });
       }).catch((err) => {
         console.log('handle error');
@@ -35,7 +35,6 @@ class ImageGallery extends React.Component {
   }
 
   changeView(src, permanent) {
-    console.log('changing main image view');
     if (permanent) {
       this.setState({
         permanent: src,

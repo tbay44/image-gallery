@@ -3,13 +3,13 @@ import React from 'react';
 const ProductImage = ({ src, changeView }) => (
   <div
     class='extra-image-container'
-    onmouseenter={() => {
+    onMouseEnter={() => {
       changeView(src, false);
     }}
-    onmouseleave={() => {
+    onMouseLeave={() => {
       changeView('');
     }}
-    onclick={() => {
+    onClick={() => {
       changeView(src, true);
     }}
   >
