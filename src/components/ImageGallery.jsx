@@ -8,9 +8,11 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: '',
+      temporary: '',
+      permanent: '',
       photos: [],
     };
+    this.changeView = this.changeView.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +26,7 @@ class ImageGallery extends React.Component {
     axios.get(`/product/${productId}`)
       .then((result) => {
         this.setState({
-          current: result.data[0].prime_pic,
+          permanent: result.data[0].prime_pic,
           photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2]
         });
       }).catch((err) => {
@@ -32,12 +34,24 @@ class ImageGallery extends React.Component {
       });
   }
 
+  changeView(src, permanent) {
+    console.log('changing main image view');
+    if (permanent) {
+      this.setState({
+        permanent: src,
+      });
+    } else {
+      this.setState({
+        temporary: src,
+      });
+    }
+  }
 
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <CurrentImage src={this.state.current}/>
-        <ProductImages photos={this.state.photos}/>
+        <CurrentImage src={this.state.permanent} tempSrc={this.state.temporary}/>
+        <ProductImages photos={this.state.photos} changeView={this.changeView}/>
         <HaveOneToSell/>
       </React.Fragment>
     );
