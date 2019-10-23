@@ -39,6 +39,7 @@ const CurrentImage = ({ src, tempSrc }) => {
             </b></p>
           </div>
         </div>
+        <div id='zoom-selector'></div>
       </div>
       <div id='zoomed-image' style={{display: 'none'}}>
         <img src={src} alt=''/>

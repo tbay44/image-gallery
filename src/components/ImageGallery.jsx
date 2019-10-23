@@ -3,6 +3,7 @@ import axios from 'axios';
 import CurrentImage from './CurrentImage.jsx';
 import ProductImages from './ProductImages.jsx';
 import HaveOneToSell from './HaveOneToSell.jsx';
+import ZoomedImage from './ZoomedImage.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class ImageGallery extends React.Component {
       temporary: '',
       permanent: '',
       selected: null,
+      zoooming: false,
       photos: [],
     };
     this.changeView = this.changeView.bind(this);
@@ -24,7 +26,7 @@ class ImageGallery extends React.Component {
   }
 
   getImages(productId) {
-    axios.get(`/product/${productId}`)
+    axios.get(`http://ec2-54-193-123-144.us-west-1.compute.amazonaws.com/product/${productId}`)
       .then((result) => {
         this.setState({
           permanent: result.data[0].prime_pic,
@@ -59,6 +61,7 @@ class ImageGallery extends React.Component {
           selected={this.state.selected}
         />
         <HaveOneToSell/>
+        <ZoomedImage zooming={this.state.zooming}/>
       </React.Fragment>
     );
   }
