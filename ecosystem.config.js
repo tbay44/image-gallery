@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:tbay44/image-gallery',
       path: '/home/ubuntu/image-gallery',
-      'post-deploy': 'npm install && npm run build-dev && pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'npm install && npm run build-deploy && pm2 startOrRestart ecosystem.config.js',
     },
   },
 };
