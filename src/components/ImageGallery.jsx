@@ -12,10 +12,13 @@ class ImageGallery extends React.Component {
       temporary: '',
       permanent: '',
       selected: null,
-      zoooming: false,
       photos: [],
+      zooming: false,
+      zoomX: null,
+      zoomY: null,
     };
     this.changeView = this.changeView.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
   }
 
   componentDidMount() {
@@ -51,17 +54,32 @@ class ImageGallery extends React.Component {
     }
   }
 
+  toggleZoom(boolean, startPosition) {
+    this.setState({
+      zooming: boolean,
+    });
+  }
+
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <CurrentImage src={this.state.permanent} tempSrc={this.state.temporary}/>
+        <CurrentImage
+          src={this.state.permanent}
+          tempSrc={this.state.temporary}
+          toggleZoom={this.toggleZoom}
+        />
+        <ZoomedImage
+          zooming={this.state.zooming}
+          src={this.state.permanent}
+          zoomX={this.state.zoomX}
+          zoomY={this.state.zoomY}
+        />
         <ProductImages
           photos={this.state.photos}
           changeView={this.changeView}
           selected={this.state.selected}
         />
         <HaveOneToSell/>
-        <ZoomedImage zooming={this.state.zooming}/>
       </React.Fragment>
     );
   }
