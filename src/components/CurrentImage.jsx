@@ -17,10 +17,12 @@ const CurrentImage = ({ src, tempSrc }) => {
       <div id='current-image-container'
       onMouseEnter={() => {
         document.getElementById('event-mask').style.display = 'flex';
+        document.getElementById('zoom-trigger').style.display = 'flex';
       }}
       onMouseLeave={() => { // Hide all modal divs
         document.getElementById('zoomed-image').style.display = 'none';
         document.getElementById('event-mask').style.display = 'none';
+        document.getElementyById('zoom-trigger').style.display = 'none';
         document.getElementById('zoom-selector').style.display = 'none';
       }}>
         <img id='main-view' src={src} alt=''/>

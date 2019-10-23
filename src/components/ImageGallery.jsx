@@ -26,7 +26,7 @@ class ImageGallery extends React.Component {
   }
 
   getImages(productId) {
-    axios.get(`http://ec2-54-193-123-144.us-west-1.compute.amazonaws.com/product/${productId}`)
+    axios.get(`/product/${productId}`)
       .then((result) => {
         this.setState({
           permanent: result.data[0].prime_pic,

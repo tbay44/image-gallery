@@ -1,48 +1,50 @@
+body {
+  margin: 0;
+}
 #image-gallery {
-  height: 675px;
-  width: 518px;
+  margin-top: 0px;
+  padding: 15px 6px;
+  height: 100%;
+  width: 36.1%;
   font-family: "Helvetica neue", Helvetica, Verdana, Sans-serif;
   background-color: #F8F8F8;
-  position: relative;
   display: inline-block;
-  z-index: 3;
 }
 
 #left-shadow {
-  top: 480px;
+  top: 497px;
   left: 5px;
   height: 5px;
-  width: 400px;
+  width: 100px;
   position: relative;
   box-shadow: 0 15px 6px rgba(0,0,0,0.4);
   transform: rotate(-4deg);
-  z-index: 2;
+  z-index: 1;
 }
 
 #current-image-container {
-  height: 502px;
-  width: 502px;
+  position: relative;
+  margin-right: 10px;
+  width: 98%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
 #event-mask {
   position: absolute;
   display: none;
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
   background-color: rgba(255, 255, 255, 0.5);
-  z-index: 3;
   align-items: center;
   justify-content: center;
 }
 
 #zoom-trigger {
   display: flex;
-  width: 25%;
+  max-width: 25%;
   height: 25%;
   border: solid 1px #777;
   background-color: rgba(255, 255, 255, 0.8);
@@ -139,8 +141,4 @@
 #zoomed-image {
   position: relative;
   z-index: 2;
-}
-
-#screen-shader {
-  display: none;
 }
