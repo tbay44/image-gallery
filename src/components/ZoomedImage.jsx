@@ -14,7 +14,7 @@ class ZoomedImage extends React.Component {
       <div id='zoomed-image'>
       </div>
     ) : (
-        <div>{this.state.x}</div>
+        <div id='zoomed-image'>{this.state.x}</div>
     );
   }
 }
