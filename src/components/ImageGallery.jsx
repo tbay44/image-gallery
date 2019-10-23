@@ -63,23 +63,27 @@ class ImageGallery extends React.Component {
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <CurrentImage
-          src={this.state.permanent}
-          tempSrc={this.state.temporary}
-          toggleZoom={this.toggleZoom}
-        />
-        <ZoomedImage
-          zooming={this.state.zooming}
-          src={this.state.permanent}
-          zoomX={this.state.zoomX}
-          zoomY={this.state.zoomY}
-        />
-        <ProductImages
-          photos={this.state.photos}
-          changeView={this.changeView}
-          selected={this.state.selected}
-        />
-        <HaveOneToSell/>
+        <div>
+          <CurrentImage
+            src={this.state.permanent}
+            tempSrc={this.state.temporary}
+            toggleZoom={this.toggleZoom}
+          />
+          <ProductImages
+            photos={this.state.photos}
+            changeView={this.changeView}
+            selected={this.state.selected}
+          />
+          <HaveOneToSell/>
+        </div>
+        <div id='zoomed-image'>
+          <ZoomedImage
+            zooming={this.state.zooming}
+            src={this.state.permanent}
+            zoomX={this.state.zoomX}
+            zoomY={this.state.zoomY}
+          />
+        </div>
       </React.Fragment>
     );
   }

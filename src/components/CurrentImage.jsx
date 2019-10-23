@@ -23,7 +23,6 @@ const CurrentImage = ({ src, tempSrc, toggleZoom }) => {
         toggleZoom(false);
         document.getElementById('zoomed-image').style.display = 'none';
         document.getElementById('event-mask').style.display = 'none';
-        document.getElementById('zoom-trigger').style.display = 'none';
         document.getElementById('zoom-selector').style.display = 'none';
       }}>
         <img id='main-view' src={src} alt=''/>
@@ -32,6 +31,8 @@ const CurrentImage = ({ src, tempSrc, toggleZoom }) => {
           onMouseEnter={() => {
             toggleZoom(true);
             document.getElementById('event-mask').style.display = 'none';
+            let zoomedImageWidth = document.getElementById('zoomed-image').clientWidth;
+            let zoomedImageHeight = document.getElementById('zoomed-image').clientHeight;
             document.getElementById('zoom-selector').style.display = 'inline';
           }}>
             <p><b>Mouse over to Zoom
