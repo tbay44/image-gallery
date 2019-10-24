@@ -63,7 +63,7 @@ class ImageGallery extends React.Component {
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <div>
+        <div id='main-ig-container'>
           <CurrentImage
             src={this.state.permanent}
             tempSrc={this.state.temporary}
@@ -76,7 +76,7 @@ class ImageGallery extends React.Component {
           />
           <HaveOneToSell/>
         </div>
-        <div id='zoomed-image'>
+        <div id='zoomed-image-container'>
           <ZoomedImage
             zooming={this.state.zooming}
             src={this.state.permanent}

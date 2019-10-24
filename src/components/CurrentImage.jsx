@@ -21,7 +21,6 @@ const CurrentImage = ({ src, tempSrc, toggleZoom }) => {
       }}
       onMouseLeave={() => { // Hide all modal divs
         toggleZoom(false);
-        document.getElementById('zoomed-image').style.display = 'none';
         document.getElementById('event-mask').style.display = 'none';
         document.getElementById('zoom-selector').style.display = 'none';
       }}>

@@ -4,7 +4,8 @@ body {
 #image-gallery {
   margin-top: 0px;
   padding: 15px 6px;
-  height: auto;
+  height: 100%;
+  max-height: 100%;
   width: 100%;
   font-family: "Helvetica neue", Helvetica, Verdana, Sans-serif;
   background-color: #F8F8F8;
@@ -14,11 +15,9 @@ body {
 }
 
 #left-shadow {
-  top: 95%;
-  left: 0.1%;
   height: 5px;
   width: 100px;
-  position: relative;
+  position: absolute;
   box-shadow: 0 15px 6px rgba(0,0,0,0.4);
   transform: rotate(-4deg);
   z-index: 1;
@@ -37,8 +36,8 @@ body {
 #event-mask {
   position: absolute;
   display: none;
-  width: 500px;
-  height: 500px;
+  width: 98%;
+  height: 98%;
   background-color: rgba(255, 255, 255, 0.5);
   align-items: center;
   justify-content: center;
@@ -139,10 +138,15 @@ body {
   height: 16px;
 }
 
-#zoomed-image {
+#zoomed-image-container {
   overflow: hidden;
-  transform: scale(1.2);
-  z-index: 2;
   height: 100%;
   width: 100%;
+}
+#zoomed-image {
+  overflow: hidden;
+  z-index: 2;
+  transform: scale(2.5);
+  max-height: 100%;
+  max-width: 100%;
 }

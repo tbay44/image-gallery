@@ -1,11 +1,13 @@
 import React from 'react';
 
 const ZoomedImage = ({ zooming, src, x, y }) => {
-  return (zooming) ? (
-    <div id='zoomed-image'>
-      <img src={src} instrinsicsize alt=''/>
-    </div>
-  ) : false;
+  if (zooming) {
+    return (
+      <img id='zoomed-image' src={src} alt=''/>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
 export default ZoomedImage;
