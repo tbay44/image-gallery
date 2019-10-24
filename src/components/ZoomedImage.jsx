@@ -1,22 +1,13 @@
 import React from 'react';
 
-class ZoomedImage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      x: null,
-      y: null,
-    };
-  }
-
-  render() {
-    return (this.props.zooming) ? (
-      <div id='zoomed-image'>
-      </div>
-    ) : (
-        <div>{this.state.x}</div>
+const ZoomedImage = ({ zooming, src, x, y }) => {
+  if (zooming) {
+    return (
+      <img id='zoomed-image' src={src} alt=''/>
     );
+  } else {
+    return <div></div>;
   }
-}
+};
 
 export default ZoomedImage;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CurrentImage = ({ src, tempSrc }) => {
+const CurrentImage = ({ src, tempSrc, toggleZoom }) => {
   if (tempSrc) {
     return (
       <React.Fragment>
@@ -17,9 +17,10 @@ const CurrentImage = ({ src, tempSrc }) => {
       <div id='current-image-container'
       onMouseEnter={() => {
         document.getElementById('event-mask').style.display = 'flex';
+        document.getElementById('zoom-trigger').style.display = 'flex';
       }}
       onMouseLeave={() => { // Hide all modal divs
-        document.getElementById('zoomed-image').style.display = 'none';
+        toggleZoom(false);
         document.getElementById('event-mask').style.display = 'none';
         document.getElementById('zoom-selector').style.display = 'none';
       }}>
@@ -27,9 +28,11 @@ const CurrentImage = ({ src, tempSrc }) => {
         <div id='event-mask'>
           <div id='zoom-trigger'
           onMouseEnter={() => {
+            toggleZoom(true);
             document.getElementById('event-mask').style.display = 'none';
+            let zoomedImageWidth = document.getElementById('zoomed-image').clientWidth;
+            let zoomedImageHeight = document.getElementById('zoomed-image').clientHeight;
             document.getElementById('zoom-selector').style.display = 'inline';
-            document.getElementById('zoomed-image').style.display = 'block';
           }}>
             <p><b>Mouse over to Zoom
             <br/>
@@ -40,9 +43,6 @@ const CurrentImage = ({ src, tempSrc }) => {
           </div>
         </div>
         <div id='zoom-selector'></div>
-      </div>
-      <div id='zoomed-image' style={{display: 'none'}}>
-        <img src={src} alt=''/>
       </div>
     </React.Fragment>
   );

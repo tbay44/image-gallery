@@ -12,10 +12,13 @@ class ImageGallery extends React.Component {
       temporary: '',
       permanent: '',
       selected: null,
-      zoooming: false,
       photos: [],
+      zooming: false,
+      zoomX: null,
+      zoomY: null,
     };
     this.changeView = this.changeView.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +29,7 @@ class ImageGallery extends React.Component {
   }
 
   getImages(productId) {
-    axios.get(`http://ec2-54-193-123-144.us-west-1.compute.amazonaws.com/product/${productId}`)
+    axios.get(`/product/${productId}`)
       .then((result) => {
         this.setState({
           permanent: result.data[0].prime_pic,
@@ -51,17 +54,36 @@ class ImageGallery extends React.Component {
     }
   }
 
+  toggleZoom(boolean, startPosition) {
+    this.setState({
+      zooming: boolean,
+    });
+  }
+
   render() {
     return ( // 582 by 575
       <React.Fragment>
-        <CurrentImage src={this.state.permanent} tempSrc={this.state.temporary}/>
-        <ProductImages
-          photos={this.state.photos}
-          changeView={this.changeView}
-          selected={this.state.selected}
-        />
-        <HaveOneToSell/>
-        <ZoomedImage zooming={this.state.zooming}/>
+        <div id='main-ig-container'>
+          <CurrentImage
+            src={this.state.permanent}
+            tempSrc={this.state.temporary}
+            toggleZoom={this.toggleZoom}
+          />
+          <ProductImages
+            photos={this.state.photos}
+            changeView={this.changeView}
+            selected={this.state.selected}
+          />
+          <HaveOneToSell/>
+        </div>
+        <div id='zoomed-image-container'>
+          <ZoomedImage
+            zooming={this.state.zooming}
+            src={this.state.permanent}
+            zoomX={this.state.zoomX}
+            zoomY={this.state.zoomY}
+          />
+        </div>
       </React.Fragment>
     );
   }
