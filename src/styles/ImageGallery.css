@@ -33,11 +33,20 @@ body {
   z-index: 2;
 }
 
+#current-image-container-zooming {
+  position: relative;
+  display: flex;
+  width: 98%;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
 #event-mask {
   position: absolute;
-  display: none;
   width: 98%;
-  height: 98%;
+  height: 100%;
   background-color: rgba(255, 255, 255, 0.5);
   align-items: center;
   justify-content: center;
@@ -55,7 +64,10 @@ body {
 }
 
 #zoom-selector {
-  display: none;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 59%;
+  height: 49%;
   position: absolute;
   border: solid 1px black;
 }
@@ -139,14 +151,32 @@ body {
 }
 
 #zoomed-image-container {
+  position: relative;
+  z-index: 2;
   overflow: hidden;
   height: 100%;
   width: 100%;
 }
+
 #zoomed-image {
-  overflow: hidden;
   z-index: 2;
   transform: scale(2.5);
   max-height: 100%;
   max-width: 100%;
+}
+
+#zoom-125 {
+  transform: scale(1.25);
+}
+
+#zoom-150 {
+  transform: scale(1.5);
+}
+
+#zoom-200 {
+  transform: scale(2);
+}
+
+#zoom-250 {
+ transform: scale(2.5);
 }

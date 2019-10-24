@@ -17,7 +17,6 @@ const ProductImage = ({ src, changeView, id }) => (
       } else {
         lastCharOfId = e.target.id.slice(-1);
       }
-      console.log(e.target.id.slice(-1));
       changeView(src, Number(lastCharOfId));
     }}
   >

@@ -14,8 +14,8 @@ class ImageGallery extends React.Component {
       selected: null,
       photos: [],
       zooming: false,
-      zoomX: null,
-      zoomY: null,
+      imgW: null,
+      imgH: null,
     };
     this.changeView = this.changeView.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
@@ -29,14 +29,14 @@ class ImageGallery extends React.Component {
   }
 
   getImages(productId) {
-    axios.get(`/product/${productId}`)
+    axios.get(`http://ec2-54-193-123-144.us-west-1.compute.amazonaws.com/product/${productId}`)
       .then((result) => {
         this.setState({
           permanent: result.data[0].prime_pic,
           photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2],
         });
       }).catch((err) => {
-        console.log('handle error');
+        console.error(err);
       });
   }
 
@@ -54,9 +54,11 @@ class ImageGallery extends React.Component {
     }
   }
 
-  toggleZoom(boolean, startPosition) {
+  toggleZoom(zooming, imgW, imgH) {
     this.setState({
-      zooming: boolean,
+      zooming,
+      imgW,
+      imgH,
     });
   }
 
@@ -67,7 +69,10 @@ class ImageGallery extends React.Component {
           <CurrentImage
             src={this.state.permanent}
             tempSrc={this.state.temporary}
+            zooming={this.state.zooming}
             toggleZoom={this.toggleZoom}
+            imgW={this.state.imgW}
+            imgH={this.state.imgH}
           />
           <ProductImages
             photos={this.state.photos}
