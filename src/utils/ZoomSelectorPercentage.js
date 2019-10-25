@@ -1,10 +1,6 @@
-const getZoomSelectorDimensions = (imgWidth, imgHeight) => {
-  imgWidth = ((document.getElementById('zoomed-image-container').clientWidth) / (imgWidth * 2.5) * 100).toString() + '%';
-  imgHeight = ((document.getElementById('zoomed-image-container').clientHeight) / (imgHeight * 2.5) * 100).toString() + '%';
-  return {
-    zoomSelectorWidth: imgWidth,
-    zoomSelectorHeight: imgHeight,
-  };
-};
+const getZoomSelectorDimensions = (imgWidth, imgHeight) => ({
+  zoomSelectorWidth: ((document.body.clientWidth * 0.6389) / (imgWidth * 2) * 100).toString() + '%',
+  zoomSelectorHeight: ((document.body.clientHeight * 0.6389) / (imgHeight * 2) * 100).toString() + '%',
+});
 
 export default getZoomSelectorDimensions;

@@ -4,6 +4,7 @@ import CurrentImage from './CurrentImage.jsx';
 import ProductImages from './ProductImages.jsx';
 import HaveOneToSell from './HaveOneToSell.jsx';
 import ZoomedImage from './ZoomedImage.jsx';
+import gzsp from '../utils/ZoomSelectorPercentage';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -16,6 +17,8 @@ class ImageGallery extends React.Component {
       zooming: false,
       imgW: null,
       imgH: null,
+      zoomSelectorWidth: null,
+      zoomSelectorHeight: null,
     };
     this.changeView = this.changeView.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
@@ -31,9 +34,17 @@ class ImageGallery extends React.Component {
   getImages(productId) {
     axios.get(`http://ec2-54-193-123-144.us-west-1.compute.amazonaws.com/product/${productId}`)
       .then((result) => {
+        // eslint-disable-next-line
         this.setState({
-          permanent: result.data[0].prime_pic,
-          photos: [result.data[0].prime_pic, result.data[0].pic_1, result.data[0].pic_2],
+          permanent: result.data[0],
+          photos: result.data,
+          temporary: '',
+          selected: null,
+          zooming: false,
+          imgW: null,
+          imgH: null,
+          zoomSelectorWidth: null,
+          zoomSelectorHeight: null,
         });
       }).catch((err) => {
         console.error(err);
@@ -55,42 +66,77 @@ class ImageGallery extends React.Component {
   }
 
   toggleZoom(zooming, imgW, imgH) {
+    const { zoomSelectorWidth, zoomSelectorHeight } = gzsp(imgW, imgH);
     this.setState({
       zooming,
       imgW,
       imgH,
+      zoomSelectorWidth,
+      zoomSelectorHeight,
     });
   }
 
   render() {
-    return ( // 582 by 575
-      <React.Fragment>
-        <div id='main-ig-container'>
-          <CurrentImage
-            src={this.state.permanent}
-            tempSrc={this.state.temporary}
-            zooming={this.state.zooming}
-            toggleZoom={this.toggleZoom}
-            imgW={this.state.imgW}
-            imgH={this.state.imgH}
-          />
-          <ProductImages
-            photos={this.state.photos}
-            changeView={this.changeView}
-            selected={this.state.selected}
-          />
-          <HaveOneToSell/>
-        </div>
-        <div id='zoomed-image-container'>
-          <ZoomedImage
-            zooming={this.state.zooming}
-            src={this.state.permanent}
-            zoomX={this.state.zoomX}
-            zoomY={this.state.zoomY}
-          />
-        </div>
-      </React.Fragment>
-    );
+    if (this.state.zooming) {
+      return (
+        <React.Fragment>
+          <div id='main-ig-container'>
+            <CurrentImage
+              src={this.state.permanent}
+              tempSrc={this.state.temporary}
+              zooming={this.state.zooming}
+              toggleZoom={this.toggleZoom}
+              imgW={this.state.imgW}
+              imgH={this.state.imgH}
+            />
+            <ProductImages
+              photos={this.state.photos}
+              changeView={this.changeView}
+              selected={this.state.selected}
+            />
+            <HaveOneToSell/>
+          </div>
+          <div id='zoomed-image-container'>
+            <ZoomedImage
+              zooming={this.state.zooming}
+              src={this.state.permanent}
+              zoomX={this.state.zoomX}
+              zoomY={this.state.zoomY}
+            />
+          </div>
+        </React.Fragment>
+      );
+      // eslint-disable-next-line no-else-return
+    } else {
+      return (
+        <React.Fragment>
+          <div id='main-ig-container'>
+            <CurrentImage
+              src={this.state.permanent}
+              tempSrc={this.state.temporary}
+              zooming={this.state.zooming}
+              toggleZoom={this.toggleZoom}
+              imW={this.state.imgW}
+              imgH={this.state.imgH}
+            />
+            <ProductImages
+              photos={this.state.photos}
+              changeView={this.changeView}
+              selected={this.state.selected}
+            />
+            <HaveOneToSell/>
+          </div>
+          <div id='zoomed-image-container'>
+            <ZoomedImage
+              zooming={this.state.zooming}
+              src={this.state.permanent}
+              zoomX={this.state.zoomX}
+              zoomY={this.state.zoomY}
+            />
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }
 
