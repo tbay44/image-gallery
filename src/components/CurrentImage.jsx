@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, selectionWidth, selectionHeight }) => {
+const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, zoomSelectorWidth, zoomSelectorHeight }) => {
   if (tempSrc) {
     return (
       <React.Fragment>
@@ -20,7 +20,6 @@ const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, selectionWidth, selec
           console.log(e.clientX, e.clientY);
         }}
         onMouseLeave={() => {
-          document.getElementById('image-gallery').style.display = 'block';
           toggleZoom(false);
         }}
         >
