@@ -80,14 +80,14 @@ class ImageGallery extends React.Component {
     if (this.state.zooming) {
       return (
         <React.Fragment>
-          <div id='main-ig-container'>
+          <div id='main-ig-container-zoom'>
             <CurrentImage
               src={this.state.permanent}
               tempSrc={this.state.temporary}
               zooming={this.state.zooming}
               toggleZoom={this.toggleZoom}
-              imgW={this.state.imgW}
-              imgH={this.state.imgH}
+              zoomSelectorWidth={this.state.zoomSelectorWidth}
+              zoomSelectorHeight={this.state.zoomSelectorHeight}
             />
             <ProductImages
               photos={this.state.photos}
@@ -95,15 +95,15 @@ class ImageGallery extends React.Component {
               selected={this.state.selected}
             />
             <HaveOneToSell/>
-          </div>
-          <div id='zoomed-image-container'>
+            </div>
+            <div>
             <ZoomedImage
               zooming={this.state.zooming}
               src={this.state.permanent}
               zoomX={this.state.zoomX}
               zoomY={this.state.zoomY}
             />
-          </div>
+            </div>
         </React.Fragment>
       );
       // eslint-disable-next-line no-else-return
@@ -116,8 +116,8 @@ class ImageGallery extends React.Component {
               tempSrc={this.state.temporary}
               zooming={this.state.zooming}
               toggleZoom={this.toggleZoom}
-              imW={this.state.imgW}
-              imgH={this.state.imgH}
+              zoomSelectorWidth={this.state.zoomSelectorWidth}
+              zoomSelectorHeight={this.state.zoomSelectorHeight}
             />
             <ProductImages
               photos={this.state.photos}
@@ -125,14 +125,6 @@ class ImageGallery extends React.Component {
               selected={this.state.selected}
             />
             <HaveOneToSell/>
-          </div>
-          <div id='zoomed-image-container'>
-            <ZoomedImage
-              zooming={this.state.zooming}
-              src={this.state.permanent}
-              zoomX={this.state.zoomX}
-              zoomY={this.state.zoomY}
-            />
           </div>
         </React.Fragment>
       );
