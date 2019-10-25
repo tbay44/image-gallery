@@ -34,14 +34,10 @@ class ImageGallery extends React.Component {
   getImages(productId) {
     axios.get(`http://ec2-54-193-123-144.us-west-1.compute.amazonaws.com/product/${productId}`)
       .then((result) => {
-        const newPhotos = [];
         // eslint-disable-next-line
-        for (let imgSrc in result.data[0]) {
-          newPhotos.push(imgSrc);
-        }
         this.setState({
-          permanent: result.data[0].prime_pic,
-          photos: newPhotos,
+          permanent: result.data[0],
+          photos: result.data,
           temporary: '',
           selected: null,
           zooming: false,

@@ -22,7 +22,17 @@ app.get('/product/:id', (req, res) => {
     if (err) {
       res.send(err);
     } else {
-      res.send(result);
+      const photos = [];
+      if (result[0].prime_pic) {
+        photos.push(result[0].prime_pic);
+      }
+      if (result[0].pic_1) {
+        photos.push(result[0].pic_1);
+      }
+      if (result[0].pic_2) {
+        photos.push(result[0].pic_2);
+      }
+      res.send(photos);
     }
   });
 });

@@ -49,7 +49,6 @@ const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, selectionWidth, selec
             onMouseEnter={() => {
               const { naturalWidth, naturalHeight } = document.getElementById('main-view');
               document.getElementById('event-mask').style.display = 'none';
-              document.getElementById('image-gallery').style.display = 'grid';
               toggleZoom(true, naturalWidth, naturalHeight);
             }}>
               <p><b>Mouse over to Zoom
