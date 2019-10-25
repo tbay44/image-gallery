@@ -1,8 +1,6 @@
 import React from 'react';
-import gzsp from '../utils/ZoomSelectorPercentage';
 
-const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, imgW, imgH }) => {
-
+const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, selectionWidth, selectionHeight }) => {
   if (tempSrc) {
     return (
       <React.Fragment>
@@ -14,7 +12,6 @@ const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, imgW, imgH }) => {
     );
   }
   if (zooming) {
-    const { zoomSelectorWidth, zoomSelectorHeight } = gzsp();
     return (
       <React.Fragment>
         <div id='left-shadow'></div>
@@ -23,6 +20,7 @@ const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, imgW, imgH }) => {
           console.log(e.clientX, e.clientY);
         }}
         onMouseLeave={() => {
+          document.getElementById('image-gallery').style.display = 'block';
           toggleZoom(false);
         }}
         >
@@ -51,6 +49,7 @@ const CurrentImage = ({ tempSrc, src, zooming, toggleZoom, imgW, imgH }) => {
             onMouseEnter={() => {
               const { naturalWidth, naturalHeight } = document.getElementById('main-view');
               document.getElementById('event-mask').style.display = 'none';
+              document.getElementById('image-gallery').style.display = 'grid';
               toggleZoom(true, naturalWidth, naturalHeight);
             }}>
               <p><b>Mouse over to Zoom
