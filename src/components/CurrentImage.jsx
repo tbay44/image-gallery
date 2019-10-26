@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ImagesOnly from './ImagesOnly.jsx';
 import gzsso from '../utils/ZoomSelectorStartOffset';
 
 const CurrentImage = ({ tempSrc, src, zooming,
@@ -7,10 +9,10 @@ const CurrentImage = ({ tempSrc, src, zooming,
   if (tempSrc) {
     return (
       <React.Fragment>
-        <div id='left-shadow'></div>
         <div id='current-image-container'>
           <img id='main-view' src={tempSrc} alt =''/>
         </div>
+        <div id='left-shadow'></div>
       </React.Fragment>
     );
   }
@@ -19,11 +21,12 @@ const CurrentImage = ({ tempSrc, src, zooming,
     console.log('offsets: ', offsetX, offsetY);
     return (
       <React.Fragment>
-        <div id='left-shadow'></div>
         <div id='current-image-container-zooming'
         onMouseMove={(e) => {
+          // move zoom selector
           document.getElementById('zoom-selector').style.transform = `translateX(${e.clientX - startX}px) translateY(${e.clientY - startY}px)`;
-          document.getElementById('zoomed-image').style.transform = `scale(2) translateX(${startX - e.clientX}px) translateY(${startY - e.clientY}px)`;
+          // move zoomed image
+          document.getElementById('zoomed-image').style.transform = `scale(2) translateX(${(startX - e.clientX) * 2}px) translateY(${(startY - e.clientY) * 2}px)`;
           console.log(e.clientX, e.clientY);
         }}
         onMouseLeave={() => {
@@ -34,13 +37,13 @@ const CurrentImage = ({ tempSrc, src, zooming,
           <img id='main-view' src={src} alt=''/>
           <div id='zoom-selector' style={{ width: zoomSelectorWidth, height: zoomSelectorHeight }}></div>
         </div>
+        <div id='left-shadow'></div>
       </React.Fragment>
     );
     // eslint-disable-next-line no-else-return
   } else {
     return (
       <React.Fragment>
-        <div id='left-shadow'></div>
         <div id='current-image-container'
         onMouseEnter={() => {
           document.getElementById('event-mask').style.display = 'flex';
@@ -49,6 +52,9 @@ const CurrentImage = ({ tempSrc, src, zooming,
         onMouseLeave={() => {
           document.getElementById('event-mask').style.display = 'none';
           document.getElementById('event-mask').style.transform = 'none';
+        }}
+        onClick={() => {
+          ReactDOM.render(<ImagesOnly src={src}/>, document.getElementById('images-only'));
         }}
         >
           <img id='main-view' src={src} alt=''/>
@@ -71,6 +77,7 @@ const CurrentImage = ({ tempSrc, src, zooming,
             </div>
           </div>
         </div>
+        <div id='left-shadow'></div>
       </React.Fragment>
     );
   }

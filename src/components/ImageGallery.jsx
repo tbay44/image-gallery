@@ -19,9 +19,11 @@ class ImageGallery extends React.Component {
       imgH: null,
       zoomSelectorWidth: null,
       zoomSelectorHeight: null,
+      modal: false,
     };
     this.changeView = this.changeView.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +43,7 @@ class ImageGallery extends React.Component {
           temporary: '',
           selected: null,
           zooming: false,
+          modal: false,
           imgW: null,
           imgH: null,
           zoomSelectorWidth: null,
@@ -84,6 +87,12 @@ class ImageGallery extends React.Component {
     });
   }
 
+  toggleModal(boolean) {
+    this.setState({
+      modal: boolean,
+    });
+  }
+
   render() {
     if (this.state.zooming) {
       return (
@@ -94,6 +103,7 @@ class ImageGallery extends React.Component {
               tempSrc={this.state.temporary}
               zooming={this.state.zooming}
               toggleZoom={this.toggleZoom}
+              toggleModal={this.toggleModal}
               zoomSelectorWidth={this.state.zoomSelectorWidth}
               zoomSelectorHeight={this.state.zoomSelectorHeight}
               startX={this.state.startX}
