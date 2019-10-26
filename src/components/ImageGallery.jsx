@@ -45,6 +45,10 @@ class ImageGallery extends React.Component {
           imgH: null,
           zoomSelectorWidth: null,
           zoomSelectorHeight: null,
+          startX: null,
+          startY: null,
+          centerX: null,
+          centerY: null,
         });
       }).catch((err) => {
         console.error(err);
@@ -65,7 +69,7 @@ class ImageGallery extends React.Component {
     }
   }
 
-  toggleZoom(zooming, imgW, imgH) {
+  toggleZoom(zooming, imgW, imgH, startX, startY, centerX, centerY) {
     const { zoomSelectorWidth, zoomSelectorHeight } = gzsp(imgW, imgH);
     this.setState({
       zooming,
@@ -73,6 +77,10 @@ class ImageGallery extends React.Component {
       imgH,
       zoomSelectorWidth,
       zoomSelectorHeight,
+      startX,
+      startY,
+      centerX,
+      centerY,
     });
   }
 
@@ -80,7 +88,7 @@ class ImageGallery extends React.Component {
     if (this.state.zooming) {
       return (
         <React.Fragment>
-          <div id='main-ig-container-zoom'>
+          <div id='main-ig-container'>
             <CurrentImage
               src={this.state.permanent}
               tempSrc={this.state.temporary}
@@ -88,6 +96,10 @@ class ImageGallery extends React.Component {
               toggleZoom={this.toggleZoom}
               zoomSelectorWidth={this.state.zoomSelectorWidth}
               zoomSelectorHeight={this.state.zoomSelectorHeight}
+              startX={this.state.startX}
+              startY={this.state.startY}
+              centerX={this.state.centerX}
+              centerY={this.state.centerY}
             />
             <ProductImages
               photos={this.state.photos}
@@ -95,15 +107,15 @@ class ImageGallery extends React.Component {
               selected={this.state.selected}
             />
             <HaveOneToSell/>
-            </div>
-            <div>
+          </div>
+          <div id='zoomed-image-container'>
             <ZoomedImage
               zooming={this.state.zooming}
               src={this.state.permanent}
               zoomX={this.state.zoomX}
               zoomY={this.state.zoomY}
             />
-            </div>
+          </div>
         </React.Fragment>
       );
       // eslint-disable-next-line no-else-return
