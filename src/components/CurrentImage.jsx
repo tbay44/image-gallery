@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ImagesOnly from './ImagesOnly.jsx';
 import gzsso from '../utils/ZoomSelectorStartOffset';
+import checkInZoomRangeX from '../utils/checkZoomRangeX';
+import checkInZoomRangeY from '../utils/checkZoomRangeY';
 
 const CurrentImage = ({ tempSrc, src, zooming,
   toggleZoom, zoomSelectorWidth, zoomSelectorHeight,
@@ -17,18 +19,18 @@ const CurrentImage = ({ tempSrc, src, zooming,
     );
   }
   if (zooming) {
-    const { offsetX, offsetY } = gzsso(startX, centerX, startY, centerY);
-    console.log('offsets: ', offsetX, offsetY);
     return (
       <React.Fragment>
         <div id='current-image-container-zooming'
         onMouseMove={(e) => {
-          // move zoom selector
-          document.getElementById('zoom-selector').style.transform = `translateX(${e.clientX - startX}px) translateY(${e.clientY - startY}px)`;
-          // move zoomed image
-          document.getElementById('zoomed-image').style.transform = `scale(2) translateX(${(startX - e.clientX) * 2}px) translateY(${(startY - e.clientY) * 2}px)`;
-          console.log(e.clientX, e.clientY);
-        }}
+          if (checkInZoomRangeX(e.clientX, startX) && checkInZoomRangeY(e.clientY, startY)) {
+            // move zoom selector
+            document.getElementById('zoom-selector').style.transform = `translateX(${e.clientX - startX}px) translateY(${e.clientY - startY}px)`;
+            // move zoomed image
+            document.getElementById('zoomed-image').style.transform = `translateX(${(startX - e.clientX)}px) translateY(${(startY - e.clientY)}px)`;
+          }
+        }
+        }
         onMouseLeave={() => {
           document.getElementById('zoom-selector').style.transform = 'none';
           toggleZoom(false);

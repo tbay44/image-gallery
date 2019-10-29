@@ -36,8 +36,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   width: 100%;
+  overflow: hidden;
   margin: 0;
   z-index: 4; /* above product description (z3) */
 }
@@ -199,10 +199,10 @@ body {
 }
 
 #zoomed-image {
-  transform: scale(2);
-  height: 100%;
-  width: 100%;
-  max-height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  height: 200%;
+  width: 200%;
 }
 
 #zoom-125 {
