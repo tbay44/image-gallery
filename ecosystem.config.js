@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-54-193-123-144.us-west-1.compute.amazonaws.com',
+      host: 'ec2-54-183-11-36.us-west-1.compute.amazonaws.com',
       key: '~/.ssh/tbay.pem',
       ref: 'origin/master',
       repo: 'git@github.com:tbay44/image-gallery',
