@@ -1,32 +1,6 @@
-# Project Name
+# Image Gallery
 
-> Project description
-
-## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
+> This image-gallery micro-service contains components for the main image view, a display of extra product images, and many events to interact with these components. The most notable feature of this micro-service is the native implenetation of a zoom feature with vanilla JS, HTML, and CSS. No external library was utilized to achieve the zoom effect and its accompanying modal components.
 
 ### Installing Dependencies
 
