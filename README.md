@@ -16,3 +16,15 @@
 > Server: Express (Node.js)
 
 > DB: Mongo hosted by Atlas
+
+### Deployment Notes
+
+> In my research, generally the hardest way of doing something teaches me the most, and it helps me come to appreciate techonologies that simplify complex processes. So, I decided I'll deploy this micro-service without elastic beanstalk, and without docker. This led me down many paths regarding port routing, process management, automating deployment for continuous delivery and integration of commits, and a journey with SSH.
+
+### Devops Stack
+
+> AWS EC2 t2.micro
+
+> PM2 as process manager and for deployment scripting
+
+> nginx server to route port to 8080
